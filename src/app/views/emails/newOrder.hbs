@@ -1,0 +1,563 @@
+<head>
+  <style type="text/css" title="x-apple-mail-formatting"></style>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" media="all" rel="stylesheet"
+    type="text/css">
+  <style type="text/css">
+    // Wrapper to override apple's format-detection link styling
+    .format-detection a {
+      color: #424242 !important;
+      text-decoration: none;
+    }
+
+    table td {
+      border-collapse: collapse;
+    }
+
+    body>a {
+      display: none
+    }
+
+    // this hides the sendgrid links automatically appended
+    @media only screen and (min-width: 600px) {
+      span.br {
+        display: block !important;
+      }
+    }
+
+    @media only screen and (min-width: 600px) {
+      .midline-two-column-table .title {
+        width: 40% !important;
+      }
+    }
+
+    @media only screen and (max-width: 480px) {
+      table.button td svg {
+        display: block !important;
+        padding-bottom: 5px !important;
+      }
+
+      table.button.facebook td,
+      table.button.twitter td {
+        font-size: 0.9em !important;
+      }
+
+      table.items-list {
+        width: 100% !important;
+      }
+    }
+  </style>
+  <title>Grocery</title>
+  <style>
+    @media (max-width: 500px) {
+      #receipt h2 {
+        font-size: 20px
+      }
+
+      #ratings h2 {
+        font-size: 20px
+      }
+
+      #receipt h5 {
+        font-size: 13px
+      }
+
+      #ratings h5 {
+        font-size: 13px
+      }
+
+      #receipt .count-label {
+        padding: 4px 8px;
+        margin-right: 8px
+      }
+
+      #ratings .count-label {
+        padding: 4px 8px;
+        margin-right: 8px
+      }
+
+      #receipt table.order-info {
+        width: 92%
+      }
+
+      #ratings table.order-info {
+        width: 92%
+      }
+
+      #receipt .offset-replaced-icon {
+        right: 4px
+      }
+
+      #ratings .offset-replaced-icon {
+        right: 4px
+      }
+
+      #receipt .item-block .item-image {
+        max-height: 60px;
+        width: 50px;
+        min-width: 50px
+      }
+
+      #ratings .item-block .item-image {
+        max-height: 60px;
+        width: 50px;
+        min-width: 50px
+      }
+    }
+
+    @media (max-width: 680px) {
+      #receipt .navbar.primary-navbar .logo {
+        display: block !important
+      }
+
+      #receipt table.items td {
+        padding: 5px
+      }
+
+      #receipt .order-item .item-block .item-image {
+        padding-right: 5px
+      }
+
+      #receipt .email-customer-service-btn {
+        margin-bottom: 0
+      }
+
+      #receipt h4 {
+        margin-bottom: 0
+      }
+    }
+
+    @media (min-width: 680px) {
+      #receipt .span6 {
+        width: 640px;
+        max-width: 640px;
+        min-width: 640px
+      }
+
+      #ratings .span6 {
+        width: 640px;
+        max-width: 640px;
+        min-width: 640px
+      }
+    }
+  </style>
+  <meta name="viewport" content="width = 375, initial-scale = -1">
+</head>
+
+<body class="collapse text-center" id="receipt"
+  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:none;height:100%;color:#424242;background-color:#f7f7f7;margin:0;padding:0;text-align:center;background-color:#fff;width:100% !important;padding-top:18px !important;padding-bottom:18px !important">
+  <div class="pre-header"
+    style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;display:none;font-size:1px;color:#333333;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
+    Obrigado por comprar com a Grocery!
+  </div>
+  <table border="0" cellpadding="0" cellspacing="0" height="100%" id="bodyTable" width="100%"
+    style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt">
+    <tbody>
+      <tr>
+        <td align="center" valign="top"
+          style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility">
+          <table border="0" cellpadding="0" cellspacing="0" id="emailContainer"
+            style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;max-width:600px;margin:auto;background-color:#ffffff">
+            <tbody>
+              {{>header}}
+              <tr>
+                <td align="center" id="emailBody" valign="top"
+                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility">
+                  <div class="container" id="emailContainer"
+                    style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;width:100%;max-width:600px;margin:auto;background-color:#ffffff;width: 100%">
+                    <div class="row"
+                      style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;margin-bottom:24px">
+                      <div class="span6 center-page"
+                        style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;float:none;margin:0 auto;text-align:center">
+                        <center>
+                          <!-- / this template is used in common by receipts on web and to generate receipts email -->
+                          <div class="ShopperSection"
+                            style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;margin-top:30px">
+                            <div class="ShopperImage"
+                              style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility">
+                              <img src="https://drive.google.com/uc?export=view&id=1oFmGtzPgftBBPuLabwSAlsnqU-2OYDui"
+                                style="border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;background-repeat:no-repeat;background-position:50%;border-radius:50%;display:block;width:192px;height:192px">
+                            </div>
+                            <div class="DriverName"
+                              style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-size:32px;text-align:center;color:#424242;margin-top:16px">
+                              COMPRA CONFIRMADA
+                            </div>
+                            <hr style="border-top:1px solid #cccccc">
+                            <div class="DriverDeliverySchedules"
+                              style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;margin-top:8px;margin-bottom:8px">
+                              <div class="DriverDeliverySchedule"
+                                style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-size:16px;line-height:1.75;text-align:center;color:#616161">
+                                Pedido <b>Nº {{orderNumber}}</b> feito em <b>{{orderDate}}</b> foi recebido com sucesso
+                                e chegará em sua casa nas próximas horas.
+                              </div>
+                            </div>
+                          </div>
+                        </center>
+                      </div>
+                    </div>
+                    <div class="row"
+                      style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;margin-bottom:24px">
+                      <center class="express-receipt-callout">
+                        <table style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt">
+                          <tbody>
+                            <tr>
+                              <td
+                                style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom: 30px;padding-right: 20px;">
+                                <img class="express-sparkle express-left-sparkle"
+                                  src="https://drive.google.com/uc?export=view&id=1Cqyn8HnL8c5SiFdSV6ambCmV9_IfkI_i"
+                                  alt="Left sparkle large"
+                                  style="border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic">
+                              </td>
+                              <td
+                                style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;max-width: 390px;">
+                                Entrega
+                                <strong>GRÁTIS</strong>
+                                para compras acima de R$ 50.
+                              </td>
+                              <td
+                                style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom: 35px;padding-left: 20px;">
+                                <img class="express-sparkle express-right-sparkle"
+                                  src="https://drive.google.com/uc?export=view&id=1X57oV1MeEZ-ygbFSywZqtTQkOZZY6bZl"
+                                  alt="Right sparkle large"
+                                  style="border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic">
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </center>
+                    </div>
+                    <div class="row"
+                      style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;margin-bottom:24px">
+                      <div class="span6 center-page"
+                        style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;float:none;margin:0 auto;text-align:center">
+                        <center>
+                          <table cellpadding="0" cellspacing="0" class="order-info"
+                            style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;margin-right:initial">
+                            <tbody>
+                              <tr>
+                                <td align="center"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;width: 50%">
+                                  <h5
+                                    style="margin:0;padding:0;font-weight:normal;font-size:1.1em;line-height:1.6em;font-size:18px;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-weight:300;color:#888888">
+                                    <div class="count-label blue"
+                                      style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;display:inline;font-size:12px;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-weight:600;text-transform:uppercase;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;width:160px;padding:5px 10px 5px 10px;color:#7a7a7a;background-color:#e0e0e0;margin-right:10px;color:white !important;background-color:#438ead !important">
+                                      {{orderProductsCount}}</div>
+                                    Itens no pedido
+                                  </h5>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </center>
+                      </div>
+                    </div>
+                    <div class="row"
+                      style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;margin-bottom:24px">
+                      <div class="span6 center-page"
+                        style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;float:none;margin:0 auto;text-align:center">
+                        <center>
+                          <table cellpadding="0" cellspacing="0" class="items delivered"
+                            style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;width:95%;border-collapse:separate;margin-bottom:24px">
+                            <thead
+                              style="font-size:13px;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-weight:700;text-transform:uppercase">
+                              <tr>
+                                <th align="left"
+                                  style="padding-top:10px;padding-bottom:10px;padding-left:16px;padding-right:10px;font-size:14px;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-weight:300;text-transform:uppercase;letter-spacing:2px;background-color:#438ead;color:white;-moz-border-top-left-radius:4px;-webkit-border-top-left-radius:4px;border-top-left-radius:4px">
+                                  Itens
+                                </th>
+                                <th align="right"
+                                  style="padding-top:10px;padding-bottom:10px;padding-left:16px;padding-right:10px;font-size:14px;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-weight:300;text-transform:uppercase;letter-spacing:2px;background-color:#438ead;color:white;-moz-border-top-right-radius:4px;-webkit-border-top-right-radius:4px;border-top-right-radius:4px;text-align:right">
+                                  <div class="count-label dark-blue"
+                                    style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;display:inline;font-size:12px;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-weight:600;text-transform:uppercase;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;width:160px;padding:5px 10px 5px 10px;color:#7a7a7a;background-color:#e0e0e0;margin-right:10px;color:white !important;background-color:#347690 !important">
+                                    {{orderProductsCount}}
+                                  </div>
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {{#each orderProducts}}
+                              <tr>
+                                <td class="section-head" colspan="2"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;border-left:solid #cccccc 1px;border-right:solid #cccccc 1px;border-top:solid #cccccc 1px;padding-top:10px;padding-bottom:10px;padding-left:10px;padding-right:10px;padding-left:16px;font-size:16px;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-weight:300;text-transform:uppercase;color:#888888;letter-spacing:2px;border-top:0">
+                                  {{category}}</td>
+                              </tr>
+                              {{#products}}
+                              <tr>
+                                <td class="order-item" colspan="2"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;border-left:solid #cccccc 1px;border-right:solid #cccccc 1px;border-top:solid #cccccc 1px;padding-top:10px;padding-bottom:10px;padding-left:10px;padding-right:10px">
+                                  <div class="item-block"
+                                    style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;display:inline-table;width:100%">
+                                    <div class="item-delivered item-row"
+                                      style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;display:table-row;width:100%">
+                                      <div class="item-image"
+                                        style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;display:table-cell;width:60px;min-height:60px;padding-right:15px;vertical-align:middle;text-align:center;padding-bottom:5px">
+                                        <img alt="Buchi Sovereign Frozen Organic Kombucha image"
+                                          src="https://d2lnr5mha7bycj.cloudfront.net/product-image/file/thumb_ba4e5180-ba9d-405e-adb1-adb4ae2b3daa.jpg"
+                                          style="border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;width:60px;height:auto">
+                                      </div>
+                                      <div class="item-name"
+                                        style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:400;text-rendering:optimizeLegibility;display:table-cell;font-size:12px;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-weight:600;margin-top:-5px;margin-right:5px;color:#969696;vertical-align:top;text-align:left;width:70%;font-weight:normal;font-size:14px;padding-top:0;vertical-align:middle;font-weight:500">
+                                        {{name}}
+                                        <br>
+                                        <small class="muted" style="color:#cccccc">
+                                          {{quantity}} × {{price}}
+                                        </small>
+                                      </div>
+                                      <div class="item-price"
+                                        style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:400;text-rendering:optimizeLegibility;display:table-cell;font-size:12px;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-weight:600;margin-top:-5px;margin-right:5px;color:#969696;vertical-align:top;font-weight:normal;font-size:14px;padding-top:0;vertical-align:middle;text-align:right">
+                                        <span>
+                                          <div class="total"
+                                            style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility">
+                                            {{total}}
+                                          </div>
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                              {{/products}}
+                              <tr class="endcap">
+                                <td colspan="2"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;border-left:solid #cccccc 1px;border-right:solid #cccccc 1px;border-top:solid #cccccc 1px;padding-top:10px;padding-bottom:10px;padding-left:10px;padding-right:10px;border-top:0;border-bottom:solid #cccccc 1px;padding:4px 0 0;border-bottom-left-radius:4px !important;-moz-border-bottom-left-radius:4px !important;-webkit-border-bottom-left-radius:4px !important;border-bottom-right-radius:4px !important;-moz-border-bottom-right-radius:4px !important;-webkit-border-bottom-right-radius:4px !important">
+                                </td>
+                              </tr>
+                              {{/each}}
+                            </tbody>
+                          </table>
+                        </center>
+                      </div>
+                    </div>
+                    <div class="row"
+                      style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;margin-bottom:24px">
+                      <div class="span6 center-page"
+                        style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;float:none;margin:0 auto;text-align:center">
+                        <center>
+                          <table cellpadding="0" cellspacing="0" class="items adjustments"
+                            style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;width:95%;border-collapse:separate;margin-bottom:24px">
+                            <thead
+                              style="font-size:13px;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-weight:700;text-transform:uppercase">
+                              <tr>
+                                <th align="left"
+                                  style="padding-top:10px;padding-bottom:10px;padding-left:16px;padding-right:10px;font-size:14px;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-weight:300;text-transform:uppercase;letter-spacing:2px;background-color:#ecb338;color:white;-moz-border-top-left-radius:4px;-webkit-border-top-left-radius:4px;border-top-left-radius:4px">
+                                  Entrega
+                                </th>
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td class="section-head" colspan="2"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;border-left:solid #cccccc 1px;border-right:solid #cccccc 1px;border-top:solid #cccccc 1px;padding-top:10px;padding-bottom:10px;padding-left:10px;padding-right:10px;padding-left:16px;font-size:16px;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-weight:300;text-transform:uppercase;color:#888888;letter-spacing:2px;border-top:0">
+                                  Endereço
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="order-item" colspan="2"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;border-left:solid #cccccc 1px;border-right:solid #cccccc 1px;border-top:solid #cccccc 1px;padding-top:10px;padding-bottom:10px;padding-left:10px;padding-right:10px">
+                                  <div class="item-block"
+                                    style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;display:inline-table;width:100%">
+                                    <div class="item-name"
+                                      style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:400;text-rendering:optimizeLegibility;display:table-cell;font-size:12px;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-weight:600;line-height: 25px;margin-top:-5px;margin-right:5px;color:#969696;vertical-align:top;text-align:left;width:70%;font-weight:normal;font-size:14px;padding-top:0;vertical-align:middle;font-weight:500">
+
+                                      <div style="display:flex;justify-content:space-between;">
+                                        <div style="display:flex;flex-direction:column;">
+                                          <span><strong>Destinatário:</strong> {{user}}</span>
+                                          <span><strong>Logradouro:</strong> {{street}}</span>
+                                          <span><strong>Complemento:</strong> {{complement}}</span>
+                                          <span><strong>Bairro:</strong> {{neighborhood}}</span>
+                                        </div>
+                                        <div style="display:flex;flex-direction:column;">
+                                          <span><strong>CEP:</strong> {{postalCode}}</span>
+                                          <span><strong>Número:</strong> {{streetN}}</span>
+                                          <span><strong>Referência:</strong> {{reference}}</span>
+                                          <span><strong>Cidade:</strong> {{city}}/{{state}}</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </td>
+                              </tr>
+                              <tr class="endcap">
+                                <td colspan="2"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;border-left:solid #cccccc 1px;border-right:solid #cccccc 1px;border-top:solid #cccccc 1px;padding-top:10px;padding-bottom:10px;padding-left:10px;padding-right:10px;border-top:0;border-bottom:solid #cccccc 1px;padding:4px 0 0;border-bottom-left-radius:4px !important;-moz-border-bottom-left-radius:4px !important;-webkit-border-bottom-left-radius:4px !important;border-bottom-right-radius:4px !important;-moz-border-bottom-right-radius:4px !important;-webkit-border-bottom-right-radius:4px !important">
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </center>
+                      </div>
+                    </div>
+                    <div class="row inset-container totals-container"
+                      style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;margin-bottom:24px">
+                      <div class="span6 center-page"
+                        style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;float:none;margin:0 auto;text-align:center">
+                        <div class="order-totals-title"
+                          style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;font-size:15px;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-weight:600;color:#888888;text-transform:uppercase;border-bottom:1px solid #cccccc;text-align:left;padding:0 0 15px 10px;margin-bottom:15px">
+                          &nbsp;&nbsp;&nbsp;Total
+                        </div>
+                        <div
+                          style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;text-align: right">
+                          <table cellpadding="0" cellspacing="0" class="charges"
+                            style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;min-width:200px;max-width:500px;float:right;margin-right:3%;color:#888888">
+                            <tbody>
+                              <tr>
+                                <td class="charge-type"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:55%">
+                                  Subtotal</td>
+                                <td class="currency"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:5%">
+                                  R$</td>
+                                <td class="amount"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:1%;padding-right:10px">
+                                  {{orderSubTotal}}</td>
+                              </tr>
+                              <tr>
+                                <td class="charge-type"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:55%">
+                                  Taxa de entrega</td>
+                                <td class="currency"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:5%">
+                                  R$</td>
+                                <td class="amount"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:1%;padding-right:10px">
+                                  {{deliveryFee}}</td>
+                              </tr>
+                              {{#if_gt discount 0}}
+                              <tr>
+                                <td class="charge-type"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:55%">
+                                  Desconto</td>
+                                <td class="currency"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:5%">
+                                  - R$</td>
+                                <td class="amount"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:1%;padding-right:10px">
+                                  {{discount}}</td>
+                              </tr>
+                              {{/if_gt}}
+
+                              <tr class="total" style="border-top:solid #cccccc 1px">
+                                <td class="charge-type"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:55%;padding-top:12px;padding-bottom:12px;font-weight:600;color:#888888">
+                                  Total</td>
+                                <td class="currency"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:5%;padding-top:12px;padding-bottom:12px;font-weight:600;color:#888888">
+                                  R$</td>
+                                <td class="amount"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:1%;padding-right:10px;padding-top:12px;padding-bottom:12px;font-weight:600;color:#888888">
+                                  {{orderTotal}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row inset-container totals-container"
+                      style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;margin-bottom:24px;clear:both;">
+                      <div class="span6 center-page"
+                        style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;float:none;margin:0 auto;text-align:center">
+                        <div class="order-totals-title"
+                          style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;font-size:15px;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-weight:600;color:#888888;text-transform:uppercase;border-bottom:1px solid #cccccc;text-align:left;padding:0 0 15px 10px;margin-bottom:15px">
+                          &nbsp;&nbsp;&nbsp;Pagamento
+                        </div>
+                        <table cellpadding="0" cellspacing="0" class="charges"
+                          style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;min-width:200px;max-width:500px;float:right;margin-right:3%;color:#888888">
+                          <tbody>
+                            <tr>
+                              <td class="charge-type"
+                                style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:55%">
+                                Forma de pagamento:</td>
+                              <td class="amount"
+                                style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:40%;padding-right:10px">
+                                {{#if_equal paymentMethod "credit_card"}}
+                                <div class="credit-card"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;text-align:right;float:right;text-transform:none;">
+                                  <img src="
+                                    {{#if_equal creditCardBrand "visa"}}
+                                    https://drive.google.com/uc?export=view&id=18vyE2k_n1Q5GluIzR4YQAjQaPZ4FN8BP
+                                    {{/if_equal}}
+                                    {{#if_equal creditCardBrand "master_card"}}
+                                    https://drive.google.com/uc?export=view&id=1LNdUqWJs4p-D-jmzcXM7joG8DVGS6bx7
+                                    {{/if_equal}}
+                                    {{#if_equal creditCardBrand "amex"}}
+                                    https://drive.google.com/uc?export=view&id=1B2ammJJgi-K49Ktx_wgw4qRCkG_WT8S0
+                                    {{/if_equal}}
+                                    {{#if_equal creditCardBrand "discover"}}
+                                    https://drive.google.com/uc?export=view&id=1XgD_6u2c_TrU4EcUz4DQfm8PlH-pdUqH
+                                    {{/if_equal}}
+                                    " class="visa img-credit-card" alt="Visa credit card icon"
+                                    style="border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;height:20px;width:30px">
+                                  terminado em
+                                  {{creditCardLast4Digits}}
+                                </div>
+                                {{else}}
+                                <div class="credit-card"
+                                  style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;text-align:right;float:right;text-transform:none;">
+                                  <img
+                                    src="https://drive.google.com/uc?export=view&id=1_5J6AOYYXj444W6iJiW-456tk33o1ZUm"
+                                    class="visa img-credit-card" alt="Visa credit card icon"
+                                    style="border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;height:17px;width:31px">
+                                </div>
+                                {{/if_equal}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="charge-type"
+                                style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:55%">
+                                Condições de Pagamento:</td>
+                              {{#if_equal paymentMethod "credit_card"}}
+                              <td class="amount"
+                                style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:40%;padding-right:10px">
+                                Parcelado em {{paymentCondition}}x</td>
+                              {{else}}
+                              <td class="amount"
+                                style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom:6px;text-align:right;width:40%;padding-right:10px">
+                                Á vista</td>
+                              {{/if_equal}}
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                </td>
+              </tr>
+              <!--
+                        <tr align="center" style="display: block" valign="top">
+                        <td align="center" class="h3 text-muted pad-top" valign="top" style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;font-size:1.2em;line-height:1.6em;color:#9e9e9e;padding-top:20px">
+                        Download Grocery for your phone
+                        </td>
+                        </tr>
+
+                        <tr align="center" style="display: block" valign="top">
+                        <td align="center" class="pad-top pad-bottom-2x" valign="top" style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-top:20px;padding-bottom:40px">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt">
+                        <tbody><tr>
+                        <td align="right" class="pad-right-half" valign="top" width="48%" style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-right:10px">
+                        <a class="link-no-underline" href="https://itunes.apple.com/us/app/grocery/" style="color:#01939A;display:inline;text-decoration:none">
+                        <img alt="iOS" height="40" src="https://d2guulkeunn7d8.cloudfront.net/assets/mailers/base/app-store-ea872044796081be028fa86d306ad4fab266b60ad696cb8ad6633095d8dfcf0b.png" style="border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;border:none">
+                        </a>
+                        </td>
+                        <td align="left" class="pad-left" valign="top" width="52%" style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-left:20px">
+                        <a class="link-no-underline" href="https://play.google.com/store/apps/details?id=com.grocery.client" style="color:#01939A;display:inline;text-decoration:none">
+                        <img alt="Android" height="40" src="https://d2guulkeunn7d8.cloudfront.net/assets/mailers/base/android-7b253114de2979be7586217ee7549dcbb6f5b725d6360071a73d825e72a30a7b.png" style="border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;border:none">
+                        </a>
+                        </td>
+                        </tr>
+                        </tbody></table>
+                        </td>
+                        </tr>
+                        -->
+              {{>footer}}
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
