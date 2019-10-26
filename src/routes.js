@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
-import Brute from 'express-brute';
-import BruteRedis from 'express-brute-redis';
+import redis from 'redis';
+import ExpressBruteFlexible from 'rate-limiter-flexible/lib/ExpressBruteFlexible';
 
 import multerConfig from './config/multer';
 
@@ -40,12 +40,17 @@ import authMiddleware from './app/middlewares/auth';
 const routes = new Router();
 const upload = multer(multerConfig);
 
-const bruteStore = new BruteRedis({
+const redisClient = redis.createClient({
   host: process.env.REDIS_HOST,
   port: process.env.REDIS_PORT,
 });
 
-const bruteForce = new Brute(bruteStore);
+const bruteForce = new ExpressBruteFlexible(
+  ExpressBruteFlexible.LIMITER_TYPES.REDIS,
+  {
+    storeClient: redisClient,
+  },
+);
 
 // routes
 
