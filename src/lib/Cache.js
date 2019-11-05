@@ -32,6 +32,10 @@ class Cache {
 
     return null;
   }
+
+  invalidateAll() {
+    return this.redis.flushall();
+  }
 }
 
 export default new Cache();

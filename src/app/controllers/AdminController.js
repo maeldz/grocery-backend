@@ -40,6 +40,7 @@ class AdminController {
           model: User,
           as: 'user',
           attributes: [
+            'id',
             'name',
             'last_name',
             'email',

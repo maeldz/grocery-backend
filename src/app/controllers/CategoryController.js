@@ -1,4 +1,5 @@
 import Category from '../models/Category';
+import File from '../models/File';
 
 import Cache from '../../lib/Cache';
 
@@ -21,7 +22,14 @@ class CategoryController {
     if (cached) return res.json(cached);
 
     const categories = await Category.findAll({
-      attributes: ['id', 'name', 'image_id'],
+      attributes: ['id', 'name'],
+      include: [
+        {
+          model: File,
+          as: 'image',
+          attributes: ['path', 'url'],
+        },
+      ],
     });
 
     await Cache.set('categories', categories);

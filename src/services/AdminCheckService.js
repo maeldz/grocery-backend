@@ -8,7 +8,7 @@ class AdminCheckService {
     const cached = await Cache.get('admins');
 
     if (cached) {
-      const isAdmin = cached.findIndex(admin => admin.id === user_id);
+      const isAdmin = cached.findIndex(admin => admin.user.id === user_id);
 
       if (isAdmin >= 0) return true;
 
@@ -22,6 +22,7 @@ class AdminCheckService {
           model: User,
           as: 'user',
           attributes: [
+            'id',
             'name',
             'last_name',
             'email',
@@ -36,7 +37,7 @@ class AdminCheckService {
 
     await Cache.set('admins', admins);
 
-    const isAdmin = admins.findIndex(admin => admin.id === user_id);
+    const isAdmin = admins.findIndex(admin => admin.user.id === user_id);
 
     if (isAdmin < 0)
       throw new Error('Permission denied. Could not perform this operation');

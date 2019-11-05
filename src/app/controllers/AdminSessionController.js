@@ -3,6 +3,8 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User';
 import authConfig from '../../config/auth';
 
+import AdminCheckService from '../../services/AdminCheckService';
+
 class SessionController {
   async store(req, res) {
     const { email, password } = req.body;
@@ -26,6 +28,8 @@ class SessionController {
     }
 
     const { id, name, last_name, phone, birthday, gender, cpf } = user;
+
+    await AdminCheckService.run({ user_id: id });
 
     return res.json({
       user: { id, name, last_name, email, phone, birthday, gender, cpf },

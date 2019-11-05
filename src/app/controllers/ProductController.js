@@ -1,4 +1,6 @@
 import Product from '../models/Product';
+import File from '../models/File';
+import Category from '../models/Category';
 
 import Cache from '../../lib/Cache';
 
@@ -37,14 +39,18 @@ class ProductController {
     if (cached) return res.json(cached);
 
     const products = await Product.findAll({
-      attributes: [
-        'id',
-        'name',
-        'description',
-        'unit',
-        'image_id',
-        'category_id',
-        'price',
+      attributes: ['id', 'name', 'description', 'unit', 'price'],
+      include: [
+        {
+          model: File,
+          as: 'image',
+          attributes: ['path', 'url'],
+        },
+        {
+          model: Category,
+          as: 'category',
+          attributes: ['id', 'name'],
+        },
       ],
     });
 

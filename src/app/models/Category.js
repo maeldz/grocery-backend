@@ -15,7 +15,7 @@ class Category extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.File, { foreignKey: 'image_id' });
+    this.belongsTo(models.File, { foreignKey: 'image_id', as: 'image' });
   }
 }
 

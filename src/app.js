@@ -36,7 +36,11 @@ class App {
       '/files',
       express.static(path.resolve(__dirname, '..', 'tmp', 'uploads')),
     );
-    this.server.use(rateLimiter);
+    if (process.env.NODE_ENV !== 'development') {
+      this.server.use(rateLimiter);
+    }
+    // Server delay for tests
+    // this.server.use((req, res, next) => { setTimeout(next, 3000); });
   }
 
   routes() {

@@ -11,13 +11,13 @@ class UserOrderController {
       await AdminCheckService.run({ user_id: req.userId });
     }
 
-    const cached = await Cache.get(`orders:users:${req.userId}`);
+    const cached = await Cache.get(`orders:users:${req.params.id}`);
 
     if (cached) return res.json(cached);
 
     const orders = await Order.findAll({
       where: {
-        user_id: req.userId,
+        user_id: req.params.id,
       },
       attributes: [
         'id',
@@ -46,7 +46,7 @@ class UserOrderController {
       ],
     });
 
-    await Cache.set(`orders:users:${req.userId}`, orders);
+    await Cache.set(`orders:users:${req.params.id}`, orders);
 
     return res.json(orders);
   }

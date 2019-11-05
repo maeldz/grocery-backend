@@ -13,7 +13,7 @@ class Banner extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.File, { as: 'image', foreignKey: 'file_id' });
+    this.belongsTo(models.File, { as: 'image', foreignKey: 'image_id' });
   }
 }
 

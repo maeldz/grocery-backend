@@ -2,6 +2,9 @@ import db from '../../database';
 
 import Order from '../models/Order';
 import OrderDetail from '../models/OrderDetail';
+import User from '../models/User';
+import Product from '../models/Product';
+import File from '../models/File';
 
 import Cache from '../../lib/Cache';
 
@@ -27,6 +30,57 @@ class OrderController {
   async index(req, res) {
     await AdminCheckService.run({ user_id: req.userId });
 
+    // if want get only one order
+    if (req.query.id && req.query.id > 0) {
+      const order = await Order.findByPk(req.query.id, {
+        attributes: [
+          'id',
+          'date',
+          'status',
+          'ship_postal_code',
+          'ship_street',
+          'ship_street_n',
+          'ship_neighborhood',
+          'ship_city',
+          'ship_state',
+          'ship_complement',
+          'ship_reference',
+          'delivery_fee',
+          'discount',
+          'subtotal',
+          'total',
+        ],
+        include: [
+          {
+            model: OrderDetail,
+            as: 'order_details',
+            attributes: ['quantity', 'price', 'total'],
+            include: [
+              {
+                model: Product,
+                as: 'product',
+                attributes: ['name', 'description', 'price', 'unit'],
+                include: [
+                  {
+                    model: File,
+                    as: 'image',
+                    attributes: ['path', 'url'],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            model: User,
+            as: 'user',
+            attributes: ['id', 'name', 'phone'],
+          },
+        ],
+      });
+
+      return res.json(order);
+    }
+
     const cached = await Cache.get('orders:users:all');
 
     if (cached) return res.json(cached);
@@ -35,7 +89,6 @@ class OrderController {
       attributes: [
         'id',
         'date',
-        'user_id',
         'status',
         'ship_postal_code',
         'ship_street',
@@ -54,7 +107,26 @@ class OrderController {
         {
           model: OrderDetail,
           as: 'order_details',
-          attributes: ['product_id', 'quantity', 'price', 'total'],
+          attributes: ['quantity', 'price', 'total'],
+          include: [
+            {
+              model: Product,
+              as: 'product',
+              attributes: ['name', 'description', 'price', 'unit'],
+              include: [
+                {
+                  model: File,
+                  as: 'image',
+                  attributes: ['path', 'url'],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          model: User,
+          as: 'user',
+          attributes: ['id', 'name', 'phone'],
         },
       ],
     });
@@ -95,6 +167,8 @@ class OrderController {
         cc_brand,
         cc_last_4_digits,
       } = await order.update(req.body, transaction);
+
+      await Cache.invalidate('orders:users:all');
 
       if (req.body.products) {
         req.body.products.map(async product => {

@@ -26,7 +26,7 @@ class CancelOrderService {
       }
 
       order.canceled_at = new Date();
-      order.status = 'canceled';
+      order.status = 'cancelled';
 
       await order.save(transaction);
 

@@ -3,6 +3,8 @@ import multer from 'multer';
 import redis from 'redis';
 import ExpressBruteFlexible from 'rate-limiter-flexible/lib/ExpressBruteFlexible';
 
+import Cache from './lib/Cache';
+
 import multerConfig from './config/multer';
 
 // controllers
@@ -10,6 +12,7 @@ import multerConfig from './config/multer';
 import UserController from './app/controllers/UserController';
 import AdminController from './app/controllers/AdminController';
 import SessionController from './app/controllers/SessionController';
+import AdminSessionController from './app/controllers/AdminSessionController';
 import FileController from './app/controllers/FileController';
 import CategoryController from './app/controllers/CategoryController';
 import BannerController from './app/controllers/BannerController';
@@ -48,6 +51,7 @@ const redisClient = redis.createClient({
 const bruteForce = new ExpressBruteFlexible(
   ExpressBruteFlexible.LIMITER_TYPES.REDIS,
   {
+    freeRetries: 100,
     storeClient: redisClient,
   },
 );
@@ -60,6 +64,12 @@ routes.post(
   bruteForce.prevent,
   validateSessionStore,
   SessionController.store,
+);
+routes.post(
+  '/admin/sessions',
+  bruteForce.prevent,
+  validateSessionStore,
+  AdminSessionController.store,
 );
 
 routes.use(authMiddleware);
@@ -97,5 +107,10 @@ routes.post('/offers', validateOfferStore, OfferController.store);
 routes.get('/offers', OfferController.index);
 routes.put('/offers/:id', validateOfferUpdate, OfferController.update);
 routes.delete('/offers/:id', OfferController.delete);
+
+routes.get('/invalidate/all', async (req, res) => {
+  await Cache.invalidateAll();
+  return res.json('Cache limpo!');
+});
 
 export default routes;

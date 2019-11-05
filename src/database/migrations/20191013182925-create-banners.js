@@ -7,7 +7,7 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      file_id: {
+      image_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
