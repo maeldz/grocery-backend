@@ -5,6 +5,8 @@ import User from '../app/models/User';
 import OrderDetail from '../app/models/OrderDetail';
 import Product from '../app/models/Product';
 import Category from '../app/models/Category';
+import File from '../app/models/File';
+import Setting from '../app/models/Setting';
 
 import Queue from '../lib/Queue';
 import Cache from '../lib/Cache';
@@ -83,6 +85,8 @@ class CreateOrderService {
 
       const user = await User.findByPk(user_id);
 
+      const settings = JSON.parse(JSON.stringify(await Setting.findAll()));
+
       // Get order complete details
 
       const orderProducts = await OrderDetail.findAll({
@@ -94,8 +98,13 @@ class CreateOrderService {
           {
             model: Product,
             as: 'product',
-            attributes: ['name'],
+            attributes: ['name', 'quantity', 'unit'],
             include: [
+              {
+                model: File,
+                as: 'image',
+                attributes: ['path', 'url'],
+              },
               {
                 model: Category,
                 as: 'category',
@@ -121,7 +130,10 @@ class CreateOrderService {
           // Append to group
           result[product.category.name].products.push({
             name: product.name,
-            quantity,
+            image: product.image,
+            unit: product.unit,
+            quantity: product.quantity,
+            amount: quantity,
             price,
             total,
           });
@@ -134,6 +146,7 @@ class CreateOrderService {
       }, 0);
 
       await Queue.add(NewOrderMail.key, {
+        deliveryFeeLimit: JSON.parse(settings[0].delivery_fee)[1],
         orderDetails: {
           user,
           orderNumber: id,

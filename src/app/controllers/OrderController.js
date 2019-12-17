@@ -37,6 +37,7 @@ class OrderController {
           'id',
           'date',
           'status',
+          'payment_method',
           'ship_postal_code',
           'ship_street',
           'ship_street_n',
@@ -59,7 +60,13 @@ class OrderController {
               {
                 model: Product,
                 as: 'product',
-                attributes: ['name', 'description', 'price', 'unit'],
+                attributes: [
+                  'name',
+                  'description',
+                  'price',
+                  'quantity',
+                  'unit',
+                ],
                 include: [
                   {
                     model: File,
@@ -90,6 +97,7 @@ class OrderController {
         'id',
         'date',
         'status',
+        'payment_method',
         'ship_postal_code',
         'ship_street',
         'ship_street_n',
@@ -112,7 +120,7 @@ class OrderController {
             {
               model: Product,
               as: 'product',
-              attributes: ['name', 'description', 'price', 'unit'],
+              attributes: ['name', 'description', 'price', 'quantity', 'unit'],
               include: [
                 {
                   model: File,

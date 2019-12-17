@@ -40,7 +40,11 @@ class App {
       this.server.use(rateLimiter);
     }
     // Server delay for tests
-    // this.server.use((req, res, next) => { setTimeout(next, 3000); });
+    /*
+    this.server.use((req, res, next) => {
+      setTimeout(next, 3000);
+    });
+    */
   }
 
   routes() {

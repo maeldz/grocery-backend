@@ -10,6 +10,7 @@ import Product from '../app/models/Product';
 import Order from '../app/models/Order';
 import OrderDetail from '../app/models/OrderDetail';
 import Offer from '../app/models/Offer';
+import Setting from '../app/models/Setting';
 
 import databaseConfig from '../config/database';
 
@@ -24,6 +25,7 @@ const models = [
   Order,
   OrderDetail,
   Offer,
+  Setting,
 ];
 
 class Database {

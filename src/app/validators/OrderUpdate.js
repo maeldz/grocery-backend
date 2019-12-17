@@ -3,8 +3,8 @@ import * as Yup from 'yup';
 export default async (req, res, next) => {
   try {
     const schema = Yup.object().shape({
-      date: Yup.date(),
       user_id: Yup.number(),
+      date: Yup.date(),
       status: Yup.string(),
       ship_postal_code: Yup.string().max(8),
       ship_street: Yup.string(),

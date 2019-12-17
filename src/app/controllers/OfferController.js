@@ -1,4 +1,4 @@
-import { addDays } from 'date-fns';
+import { addDays, isBefore, parseISO } from 'date-fns';
 
 import Offer from '../models/Offer';
 import Product from '../models/Product';
@@ -28,6 +28,8 @@ class OfferController {
 
     await Cache.invalidate('offers');
 
+    await Cache.invalidate('products');
+
     return res.json({
       id,
       product_id,
@@ -42,7 +44,12 @@ class OfferController {
   async index(req, res) {
     const cached = await Cache.get('offers');
 
-    if (cached) return res.json(cached);
+    if (cached) {
+      const expiredCheck = cached.filter(
+        offer => !isBefore(parseISO(offer.expiration_date), new Date()),
+      );
+      return res.json(expiredCheck);
+    }
 
     const offers = await Offer.findAll({
       attributes: [
@@ -58,7 +65,14 @@ class OfferController {
         {
           model: Product,
           as: 'product',
-          attributes: ['name', 'description', 'price'],
+          attributes: [
+            'id',
+            'name',
+            'description',
+            'price',
+            'unit',
+            'quantity',
+          ],
           include: [
             {
               model: File,
@@ -75,9 +89,13 @@ class OfferController {
       ],
     });
 
-    await Cache.set('offers', offers);
+    const expiredCheck = JSON.parse(JSON.stringify(offers)).filter(
+      offer => !isBefore(parseISO(offer.expiration_date), new Date()),
+    );
 
-    return res.json(offers);
+    await Cache.set('offers', expiredCheck);
+
+    return res.json(expiredCheck);
   }
 
   async update(req, res) {
@@ -95,6 +113,8 @@ class OfferController {
     } = await offer.update(req.body);
 
     await Cache.invalidate('offers');
+
+    await Cache.invalidate('products');
 
     return res.json({
       id,

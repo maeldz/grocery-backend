@@ -10,13 +10,9 @@ class OrderCancellationMail {
 
   async handle({ data }) {
     const { orderDetails } = data;
-    const orderDate = format(
-      parseISO(orderDetails.orderDate),
-      "dd 'de' MMMM', às' HH:mm",
-      {
-        locale: ptBR,
-      },
-    );
+    const orderDate = format(parseISO(orderDetails.orderDate), 'PPPpp', {
+      locale: ptBR,
+    });
 
     await Mail.sendMail({
       to: `${orderDetails.user.name} <${orderDetails.user.email}>`,

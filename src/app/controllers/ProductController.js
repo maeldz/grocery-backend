@@ -1,3 +1,5 @@
+import { Op } from 'sequelize';
+
 import Product from '../models/Product';
 import File from '../models/File';
 import Category from '../models/Category';
@@ -5,6 +7,7 @@ import Category from '../models/Category';
 import Cache from '../../lib/Cache';
 
 import AdminCheckService from '../../services/AdminCheckService';
+import FormatProductService from '../../services/FormatProductService';
 
 class ProductController {
   async store(req, res) {
@@ -14,6 +17,7 @@ class ProductController {
       id,
       name,
       description,
+      quantity,
       unit,
       image_id,
       category_id,
@@ -26,6 +30,7 @@ class ProductController {
       id,
       name,
       description,
+      quantity,
       unit,
       image_id,
       category_id,
@@ -34,29 +39,110 @@ class ProductController {
   }
 
   async index(req, res) {
+    if (req.params.id) {
+      const product = await Product.findByPk(req.params.id, {
+        attributes: ['id', 'name', 'description', 'quantity', 'unit', 'price'],
+        include: [
+          {
+            model: File,
+            as: 'image',
+            attributes: ['path', 'url'],
+          },
+          {
+            model: Category,
+            as: 'category',
+            attributes: ['id', 'name'],
+          },
+        ],
+      });
+
+      const productFormatted = await FormatProductService.run(product);
+
+      return res.json(productFormatted);
+    }
+
+    if (req.query) {
+      if (req.query.category) {
+        const products = await Product.findAll({
+          where: {
+            category_id: req.query.category,
+          },
+          attributes: [
+            'id',
+            'name',
+            'description',
+            'quantity',
+            'unit',
+            'price',
+          ],
+          include: [
+            {
+              model: File,
+              as: 'image',
+              attributes: ['path', 'url'],
+            },
+            {
+              model: Category,
+              as: 'category',
+              attributes: ['id', 'name'],
+            },
+          ],
+        });
+
+        const productsFormatted = await FormatProductService.run(products);
+
+        return res.json(productsFormatted);
+      }
+      if (req.query.search) {
+        const searchedProducts = await Product.findAll({
+          where: {
+            name: {
+              [Op.iLike]: `%${req.query.search}%`,
+            },
+          },
+          attributes: [
+            'id',
+            'name',
+            'description',
+            'quantity',
+            'unit',
+            'price',
+          ],
+          include: [
+            {
+              model: File,
+              as: 'image',
+              attributes: ['path', 'url'],
+            },
+            {
+              model: Category,
+              as: 'category',
+              attributes: ['id', 'name'],
+            },
+          ],
+        });
+
+        const productsFormatted = await FormatProductService.run(
+          searchedProducts,
+        );
+
+        return res.json(productsFormatted);
+      }
+    }
+
     const cached = await Cache.get('products');
 
-    if (cached) return res.json(cached);
+    if (cached) {
+      const productsFormatted = await FormatProductService.run(cached);
 
-    const products = await Product.findAll({
-      attributes: ['id', 'name', 'description', 'unit', 'price'],
-      include: [
-        {
-          model: File,
-          as: 'image',
-          attributes: ['path', 'url'],
-        },
-        {
-          model: Category,
-          as: 'category',
-          attributes: ['id', 'name'],
-        },
-      ],
-    });
+      return res.json(productsFormatted);
+    }
 
-    await Cache.set('products', products);
+    const productsFormatted = await FormatProductService.run();
 
-    return res.json(products);
+    await Cache.set('products', productsFormatted);
+
+    return res.json(productsFormatted);
   }
 
   async update(req, res) {
@@ -72,6 +158,8 @@ class ProductController {
       description,
       image_id,
       category_id,
+      quantity,
+      unit,
       price,
     } = await product.update(req.body);
 
@@ -81,6 +169,8 @@ class ProductController {
       description,
       image_id,
       category_id,
+      quantity,
+      unit,
       price,
     });
   }

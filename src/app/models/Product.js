@@ -5,8 +5,9 @@ class Product extends Model {
     super.init(
       {
         name: Sequelize.STRING,
-        description: Sequelize.STRING,
+        description: Sequelize.TEXT,
         price: Sequelize.FLOAT,
+        quantity: Sequelize.FLOAT,
         unit: Sequelize.STRING,
       },
       {

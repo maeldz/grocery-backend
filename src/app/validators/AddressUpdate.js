@@ -3,13 +3,14 @@ import * as Yup from 'yup';
 export default async (req, res, next) => {
   try {
     const schema = Yup.object().shape({
-      name: Yup.string().required(),
-      description: Yup.string().required(),
-      quantity: Yup.number().required(),
-      unit: Yup.string().required(),
-      image_id: Yup.number().required(),
-      category_id: Yup.number().required(),
-      price: Yup.number().required(),
+      postal_code: Yup.number(),
+      street: Yup.string(),
+      street_n: Yup.number(),
+      neighborhood: Yup.string(),
+      city: Yup.string(),
+      state: Yup.string(),
+      complement: Yup.string(),
+      reference: Yup.string(),
     });
 
     await schema.validate(req.body, { abortEarly: false });

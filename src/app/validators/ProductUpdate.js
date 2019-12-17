@@ -7,6 +7,8 @@ export default async (req, res, next) => {
       description: Yup.string(),
       image_id: Yup.number(),
       category_id: Yup.number(),
+      quantity: Yup.number(),
+      unit: Yup.string(),
       price: Yup.number(),
     });
 

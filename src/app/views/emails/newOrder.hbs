@@ -212,7 +212,7 @@
                                 style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;max-width: 390px;">
                                 Entrega
                                 <strong>GRÁTIS</strong>
-                                para compras acima de R$ 50.
+                                para compras acima de R$ {{deliveryFeeLimit}}.
                               </td>
                               <td
                                 style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;padding-bottom: 35px;padding-left: 20px;">
@@ -291,16 +291,15 @@
                                       style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;display:table-row;width:100%">
                                       <div class="item-image"
                                         style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;text-rendering:optimizeLegibility;display:table-cell;width:60px;min-height:60px;padding-right:15px;vertical-align:middle;text-align:center;padding-bottom:5px">
-                                        <img alt="Buchi Sovereign Frozen Organic Kombucha image"
-                                          src="https://d2lnr5mha7bycj.cloudfront.net/product-image/file/thumb_ba4e5180-ba9d-405e-adb1-adb4ae2b3daa.jpg"
-                                          style="border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;width:60px;height:auto">
+                                        <img alt="Buchi Sovereign Frozen Organic Kombucha image" src="{{image_url}}"
+                                          style="border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;width:60px;height:60px;object-fit:contain;">
                                       </div>
                                       <div class="item-name"
                                         style="font-family:'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;font-weight:400;text-rendering:optimizeLegibility;display:table-cell;font-size:12px;font-family:&quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif;font-weight:600;margin-top:-5px;margin-right:5px;color:#969696;vertical-align:top;text-align:left;width:70%;font-weight:normal;font-size:14px;padding-top:0;vertical-align:middle;font-weight:500">
-                                        {{name}}
+                                        {{name}}<small> ({{quantity}} {{unit}})</small>
                                         <br>
                                         <small class="muted" style="color:#cccccc">
-                                          {{quantity}} × {{price}}
+                                          {{amount}} × {{price}}
                                         </small>
                                       </div>
                                       <div class="item-price"
@@ -476,7 +475,7 @@
                                     {{#if_equal creditCardBrand "visa"}}
                                     https://drive.google.com/uc?export=view&id=18vyE2k_n1Q5GluIzR4YQAjQaPZ4FN8BP
                                     {{/if_equal}}
-                                    {{#if_equal creditCardBrand "master_card"}}
+                                    {{#if_equal creditCardBrand "mc"}}
                                     https://drive.google.com/uc?export=view&id=1LNdUqWJs4p-D-jmzcXM7joG8DVGS6bx7
                                     {{/if_equal}}
                                     {{#if_equal creditCardBrand "amex"}}

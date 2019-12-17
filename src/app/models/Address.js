@@ -4,12 +4,12 @@ class Address extends Model {
   static init(connection) {
     super.init(
       {
-        ship_postal_code: Sequelize.STRING,
-        ship_street: Sequelize.STRING,
-        ship_street_n: Sequelize.STRING,
-        ship_neighborhood: Sequelize.STRING,
-        ship_city: Sequelize.STRING,
-        ship_state: Sequelize.STRING,
+        postal_code: Sequelize.STRING,
+        street: Sequelize.STRING,
+        street_n: Sequelize.STRING,
+        neighborhood: Sequelize.STRING,
+        city: Sequelize.STRING,
+        state: Sequelize.STRING,
         complement: Sequelize.STRING,
         reference: Sequelize.STRING,
       },

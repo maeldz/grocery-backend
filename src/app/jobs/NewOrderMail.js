@@ -10,18 +10,14 @@ class NewOrderMail {
   }
 
   async handle({ data }) {
-    const { orderDetails } = data;
+    const { orderDetails, deliveryFeeLimit } = data;
     const orderTotal = parseFloat(orderDetails.orderTotal).toFixed(2);
     const orderSubTotal = parseFloat(orderDetails.orderSubTotal).toFixed(2);
     const deliveryFee = parseFloat(orderDetails.deliveryFee).toFixed(2);
     const discount = parseFloat(orderDetails.discount).toFixed(2);
-    const orderDate = format(
-      parseISO(orderDetails.orderDate),
-      "dd 'de' MMMM', às' HH:mm",
-      {
-        locale: ptBR,
-      },
-    );
+    const orderDate = format(parseISO(orderDetails.orderDate), 'PPPpp', {
+      locale: ptBR,
+    });
 
     await Mail.sendMail({
       to: `${orderDetails.user.name} <${orderDetails.user.email}>`,
@@ -34,6 +30,7 @@ class NewOrderMail {
         payment_method: orderDetails.payment_method,
         payment_condition: orderDetails.payment_condition,
         discount,
+        deliveryFeeLimit,
         deliveryFee,
         orderSubTotal,
         orderTotal,
@@ -46,6 +43,7 @@ class NewOrderMail {
           ...category,
           products: category.products.map(p => ({
             ...p,
+            image_url: p.image.url,
             price: formatPrice(p.price),
             total: formatPrice(p.total),
           })),

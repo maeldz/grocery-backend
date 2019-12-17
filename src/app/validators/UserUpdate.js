@@ -11,7 +11,7 @@ export default async (req, res, next) => {
       password: Yup.string().when('oldPassword', (oldPassword, field) =>
         oldPassword ? field.min(6).required() : field,
       ),
-      confirmPassword: Yup.string().when('password', (password, field) =>
+      passwordConfirmation: Yup.string().when('password', (password, field) =>
         password ? field.required().oneOf([Yup.ref('password')]) : field,
       ),
       phone: Yup.string(),

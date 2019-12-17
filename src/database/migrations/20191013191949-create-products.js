@@ -12,7 +12,7 @@ module.exports = {
         allowNull: false,
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false,
       },
       image_id: {
@@ -34,6 +34,10 @@ module.exports = {
         onDelete: 'SET NULL',
       },
       price: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+      },
+      quantity: {
         type: Sequelize.FLOAT,
         allowNull: false,
       },
