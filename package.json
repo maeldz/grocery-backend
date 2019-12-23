@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node -r esm src/server.js",
     "dev": "nodemon src/server.js",
-    "queue": "nodemon src/queue.js"
+    "queue": "node -r esm src/queue.js",
+    "dev-queue": "nodemon src/queue.js"
   },
   "dependencies": {
     "@sentry/node": "5.8.0",
