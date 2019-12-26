@@ -23,8 +23,8 @@ class App {
     Sentry.init(sentryConfig);
 
     this.middlewares();
-    this.routes();
     this.exceptionHandler();
+    this.routes();
   }
 
   middlewares() {
