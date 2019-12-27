@@ -3,7 +3,6 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import path from 'path';
 import Youch from 'youch';
 import * as Sentry from '@sentry/node';
 import 'express-async-errors';
@@ -32,10 +31,6 @@ class App {
     this.server.use(helmet());
     this.server.use(cors({ origin: process.env.FRONT_URL }));
     this.server.use(express.json());
-    this.server.use(
-      '/files',
-      express.static(path.resolve(__dirname, '..', 'tmp', 'uploads')),
-    );
     if (process.env.NODE_ENV !== 'development') {
       this.server.use(rateLimiter);
     }

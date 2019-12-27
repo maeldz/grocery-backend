@@ -1,4 +1,5 @@
-import { Router } from 'express';
+import express, { Router } from 'express';
+import path from 'path';
 import multer from 'multer';
 import redis from 'redis';
 import ExpressBruteFlexible from 'rate-limiter-flexible/lib/ExpressBruteFlexible';
@@ -62,13 +63,20 @@ const bruteForce = new ExpressBruteFlexible(
 
 // routes
 
+this.server.use(
+  '/files',
+  express.static(path.resolve(__dirname, '..', 'tmp', 'uploads')),
+);
+
 routes.post('/users', validateUserStore, UserController.store);
+
 routes.post(
   '/sessions',
   bruteForce.prevent,
   validateSessionStore,
   SessionController.store,
 );
+
 routes.post(
   '/admin/sessions',
   bruteForce.prevent,
