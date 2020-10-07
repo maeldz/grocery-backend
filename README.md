@@ -1,14 +1,56 @@
-
 [![Greenkeeper badge](https://badges.greenkeeper.io/maeldz/grocery-backend-nodejs.svg)](https://greenkeeper.io/)
 
-# Backend da aplicação Grocery - App para supermercados
+# :watermelon: grocery-backend
 
-## Scripts
-### `yarn start`
-Inicia o servidor em modo de produção
-### `yarn dev`
-Inicia o servidor em modo de desenvolvimento
-### `yarn queue`
-Inicia a fila de emails em modo de produção
-### `yarn dev-queue`
-Inicia a fila de emails em modo de desenvolvimento
+API REST for Grocery app.
+
+## :iphone: Mobile
+
+- You can access the mobile app repository [here](https://github.com/maeldz/grocery-mobile).
+
+## :bar_chart: Admin panel
+
+- You can access the admin panel repository [here](https://github.com/maeldz/grocery-dashboard-reactjs).
+
+## :exclamation: Possible improvements
+
+- Remove the cache strategy that may be unnecessary and start causing bugs
+- Rewrite the code in Typescript
+
+## :wrench: Running the project
+
+- Clone this repository.
+- Install all dependencies using the command `yarn`.
+
+##### Scripts
+
+##### `yarn start`
+
+Starts the server in production mode
+
+##### `yarn dev`
+
+Starts the server in development mode
+
+##### `yarn queue`
+
+Starts the mail queue in production mode
+
+##### `yarn dev-queue`
+
+Starts the mail queue in development mode
+
+## :fire: Used technologies
+
+- NodeJS
+- Express
+- Bee Queue
+- Sequelize
+- Yup
+- Bcrypt
+- Json Web Token
+- Others NodeJS libs.
+
+## :man: Contributors
+
+- [@maeldz](https://github.com/maeldz)
