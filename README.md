@@ -12,6 +12,10 @@ API REST for Grocery app.
 
 - You can access the admin panel repository [here](https://github.com/maeldz/grocery-dashboard-reactjs).
 
+## :pushpin: Endpoints
+
+- You can access the api endpoints by Insomnia JSON file [here](/endpoints/insomnia.json).
+
 ## :exclamation: Possible improvements
 
 - Remove the cache strategy that may be unnecessary and start causing bugs
